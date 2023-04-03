@@ -36,7 +36,7 @@ and children, pets, balls, plants and furniture.
               ├── 00
               ├── 01
               ├── ...
-``
+```
 
 Important: ReLoBlur dataset can be only used for academic purposes.
 
