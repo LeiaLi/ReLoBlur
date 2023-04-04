@@ -89,12 +89,13 @@ If you train or infer with your own data, the data structure should be like:
 
 ### Pretrained Model
 
-LBAG+ uses the pretrained model of MiMO_UNet. The pretrained models could be downloaded here: [https://github.com/chosj95/MIMO-UNet](https://drive.google.com/file/d/166sufeHcdDTgXHNbCRzTC4T6DzuflB5m/view?usp=sharing)
+LBAG+ uses the pretrained model of MiMO_UNet, which could be downloaded here: [https://github.com/chosj95/MIMO-UNet](https://drive.google.com/file/d/166sufeHcdDTgXHNbCRzTC4T6DzuflB5m/view?usp=sharing)
 
 And please put the pretrained model into 
 ```
 checkpoints/pretrained_mimounet/
 ```
+You can infer LBAG by the pretrained model, which could be downloaded here:https://drive.google.com/drive/folders/1_T8Z7-T7i7BsaJhpq0rCNWLT65N_SslU?usp=sharing
 
 ### Evaluation Code
 
