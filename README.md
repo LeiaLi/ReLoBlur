@@ -114,6 +114,9 @@ To train a model with your own data/model, you can edit the `configs/LBAG.yaml` 
 CUDA_VISIBLE_DEVICES=0 python LBAG_trainer.py --config configs/LBAG.yaml --exp_name 0223_munet_gate01_1 --reset
 ```
 
-### Citation
+#To do
 
-Coming soon...
+Cication
+
+Data on Baidu Netdisk
+...
