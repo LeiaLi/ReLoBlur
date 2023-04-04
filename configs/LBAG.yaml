@@ -1,0 +1,50 @@
+# trainer settings
+work_dir: '' # experiment directory.
+infer: false # infer
+debug: false
+
+#############
+# dataset
+#############
+patch_size: 256 # training patch size
+force_blur_region_p: 0.5
+data_dir: data/dataset
+
+#########
+# train and eval
+#########
+num_ckpt_keep: 3
+tb_log_interval: 100
+num_sanity_val_steps: 1  # steps of validation at the beginning
+val_check_interval: 10000
+valid_plot_interval: 10000
+valid_monitor_key: 'val_loss'
+valid_monitor_mode: 'min'
+max_updates: 1000000
+batch_size: 12
+eval_batch_size: 1
+test_batch_size: 1
+val_max_batches: -1
+test_max_batches: -1
+valid_plot_samples: [ 0, 50, 100, 150, 200, 250, 300 ]
+num_workers: 0 ##
+multiple_width: 4
+test_save_png: true
+gen_dir_name: ''
+
+# LBAG configs
+lambda_bg: 1.0
+lambda_l1: 1.0
+lambda_fft: 0.1
+lambda_fft_amp: 0.0
+lambda_ssim: 1.0
+lambda_gate: 0.1
+model_type: 2
+shift_loss: true
+shifted_dxys: [ -1, 0, 1 ]
+clamp_gate: 0.1
+multiscale: true
+multiscale_gate: true
+pretrained_ckpt: 'checkpoints/pretrained_mimounet/MIMO-UNetPlus.pkl' # GOPRO pre-trained model
+
+lr: 0.0001
