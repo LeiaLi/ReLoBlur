@@ -15,12 +15,61 @@ and children, pets, balls, plants and furniture.
 | Resized | [link]() | [link](https://drive.google.com/drive/folders/1M_5O-fGqvCry1AmY0JhE2DulbZguIeA3?usp=sharing) | 2,405 | We provide a resized version of ReLoBlur dataset. We resized ReLoBlur by BICUBIC algorithm. |
 | Local Blur Mask | [link]() | [link](https://drive.google.com/drive/folders/1-4YerKKlDydgoBeZbiV0_XR9iJLKbLXI?usp=sharing) | 2,405 | We provide a resized version of ReLoBlur dataset. We resized ReLoBlur by BICUBIC algorithm. |
 
-### ReLoBlur structure
+Important: ReLoBlur dataset can be only used for academic purposes!
+
+## LBAG: Local Blur-Aware Gated Network
+Based on ReLoBlur, we propose a Local Blur-Aware Gated network (LBAG) and several local blur-aware techniques to bridge the gap between global and local deblurring. LBAG detects blurred regions and restores locally blurred images simultaneously. 
+
+### Environment
+
+Before running LBAG, please install the environment on Linux:
+
 ```
-├── ReLoBlur
+pip install -U pip
+pip install -r requirements.txt
+```
+
+### Pre-processing
+
+Put the training data and testing data under
+```
+LBAG/data/dataset/
+```
+and put the masks under
+```
+LBAG/data/
+```
+
+If you train or infer with your own data, the data structure should be like:
+```
+├── dataset
     ├── train
          ├── s01
              ├── 00
+                ├── 00_sharp.png
+                ├── 00_blur.png
+                ├── ...
+             ├── ...
+         ├── s02
+             ├── 00
+             ├── ...
+         ├── ...      
+    ├── test
+         ├── scene1
+              ├── 00
+              ├── 01
+              ├── ...
+         ├── scene2
+              ├── 00
+              ├── 01
+              ├── ...
+├── masks
+    ├── train
+         ├── s01
+             ├── 00
+                 ├── 00.png
+                 ├── 01.png
+                 ├── ...
              ├── 01
              ├── ...
          ├── s02
@@ -38,34 +87,13 @@ and children, pets, balls, plants and furniture.
               ├── ...
 ```
 
-Important: ReLoBlur dataset can be only used for academic purposes.
-
-## LBAG: Local Blur-Aware Gated Network
-Based on ReLoBlur, we propose a Local Blur-Aware Gated network (LBAG) and several local blur-aware techniques to bridge the gap between global and local deblurring. LBAG detects blurred regions and restores locally blurred images simultaneously. 
-
-### Environment
-
-Before running LBAG, please install the environment on Linux:
-
-```
-pip install -r requirements.txt
-```
-
-### Pre-processing
-
-In order to fasten the data loading speed, we firstly binarize data by running:
-
-```
-python data_gen/binarize_relo.py
-```
-
 ### Pretrained Model
 
-LBAG+ uses the pretrained model of MiMO_UNet. The pretrained models could be downloaded here: https://github.com/chosj95/MIMO-UNet
+LBAG+ uses the pretrained model of MiMO_UNet. The pretrained models could be downloaded here: [https://github.com/chosj95/MIMO-UNet](https://drive.google.com/file/d/166sufeHcdDTgXHNbCRzTC4T6DzuflB5m/view?usp=sharing)
 
 And please put the pretrained model into 
 ```
-checkpoints/pretrained_mimounet
+checkpoints/pretrained_mimounet/
 ```
 
 ### Evaluation Code
