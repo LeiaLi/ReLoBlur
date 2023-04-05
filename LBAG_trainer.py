@@ -67,7 +67,7 @@ class LBAGTrainer:
 
         train_pbar = tqdm(dataloader, initial=training_step, total=float('inf'),
                           dynamic_ncols=True, unit='step')
-        while self.global_step < hparams['max_updates']:
+        while training_step < hparams['max_updates']:
             for batch in train_pbar:
                 if training_step % hparams['val_check_interval'] == 0:
                     with torch.no_grad():
