@@ -67,44 +67,45 @@ class LBAGTrainer:
 
         train_pbar = tqdm(dataloader, initial=training_step, total=float('inf'),
                           dynamic_ncols=True, unit='step')
-        for batch in train_pbar:
-            if training_step % hparams['val_check_interval'] == 0:
-                with torch.no_grad():
-                    model.eval()
-                    self.validate(training_step)
-                save_checkpoint(model, optimizer, self.work_dir, training_step, hparams['num_ckpt_keep'])
-            model.train()
-            batch = move_to_cuda(batch)
+        while self.global_step < hparams['max_updates']:
+            for batch in train_pbar:
+                if training_step % hparams['val_check_interval'] == 0:
+                    with torch.no_grad():
+                        model.eval()
+                        self.validate(training_step)
+                    save_checkpoint(model, optimizer, self.work_dir, training_step, hparams['num_ckpt_keep'])
+                model.train()
+                batch = move_to_cuda(batch)
 
-            optimizer.zero_grad()
-            img_out, gate_xs = model(batch['img_blur'])
-            img_g = batch['img_gt']
-            losses = {}
-            imgs_g = [
-                F.interpolate(img_g, scale_factor=0.25, mode='bilinear'),
-                F.interpolate(img_g, scale_factor=0.5, mode='bilinear'),
-                img_g,
-            ]
-            blur_mask = batch['blur_mask']
-            blur_masks = [
-                F.interpolate(blur_mask, scale_factor=0.25, mode='nearest'),
-                F.interpolate(blur_mask, scale_factor=0.5, mode='nearest'),
-                blur_mask,
-            ]
-            losses_, total_loss = self.calc_losses(img_out, imgs_g)
-            losses.update(losses_)
-            if not hparams['multiscale_gate']:
-                blur_masks = blur_masks[-1:]
-            for i_s, (gate_x, bm) in enumerate(zip(gate_xs, blur_masks)):
-                losses[f'g_{i_s}'] = F.mse_loss(gate_x, bm)
-                total_loss += losses[f'g_{i_s}'] * hparams['lambda_gate']
-            total_loss.backward()
-            optimizer.step()
-            training_step += 1
-            scheduler.step(training_step)
-            if training_step % 100 == 0:
-                self.log_metrics({f'tr/{k}': v for k, v in losses.items()}, training_step)
-            train_pbar.set_postfix(**tensors_to_scalars(losses))
+                optimizer.zero_grad()
+                img_out, gate_xs = model(batch['img_blur'])
+                img_g = batch['img_gt']
+                losses = {}
+                imgs_g = [
+                    F.interpolate(img_g, scale_factor=0.25, mode='bilinear'),
+                    F.interpolate(img_g, scale_factor=0.5, mode='bilinear'),
+                    img_g,
+                ]
+                blur_mask = batch['blur_mask']
+                blur_masks = [
+                    F.interpolate(blur_mask, scale_factor=0.25, mode='nearest'),
+                    F.interpolate(blur_mask, scale_factor=0.5, mode='nearest'),
+                    blur_mask,
+                ]
+                losses_, total_loss = self.calc_losses(img_out, imgs_g)
+                losses.update(losses_)
+                if not hparams['multiscale_gate']:
+                    blur_masks = blur_masks[-1:]
+                for i_s, (gate_x, bm) in enumerate(zip(gate_xs, blur_masks)):
+                    losses[f'g_{i_s}'] = F.mse_loss(gate_x, bm)
+                    total_loss += losses[f'g_{i_s}'] * hparams['lambda_gate']
+                total_loss.backward()
+                optimizer.step()
+                training_step += 1
+                scheduler.step(training_step)
+                if training_step % 100 == 0:
+                    self.log_metrics({f'tr/{k}': v for k, v in losses.items()}, training_step)
+                train_pbar.set_postfix(**tensors_to_scalars(losses))
 
     def calc_losses(self, imgs_p, imgs_g, blur_masks=None, suffix=''):
         losses = {}
