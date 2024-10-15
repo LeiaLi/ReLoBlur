@@ -8,22 +8,22 @@ ReLoBlur, the first real-world local motion deblurring dataset, which is capture
 and children, pets, balls, plants and furniture.
 <img src="assets/ad_data.jpg" width="800px"/>
 
-## News
-- **2024.10**: Update the paper link.
-- **2024.4**: Paper [LMD-ViT](https://github.com/LeiaLi/LMD-ViT) releases [a new version of annotated blur masks](https://drive.google.com/drive/folders/1cBhtfm7vzsyAr9D6V_LwWJma845rUSlg?usp=drive_link).
-- **2023.3**: Code, model, and dataset are released.
-- **2022.11**: Paper "Real-world Deep Local Motion Deblurring" is accepted.
-
 ### Data Download
 |     | Google Drive | Number | Description|
 | :--- | :----: | :---- | ---- |
 | ReLoBlur test | [link](https://drive.google.com/drive/folders/1nYj4e7TSXeqBsUZxLvoay_JLZ7wxdNmC?usp=sharing) | 395 | We provide 395 pairs of testing images.|
 | ReLoBlur train| [link](https://drive.google.com/drive/folders/1rAPKzhhRjztj7Utbb00BJLSVaPC-1Jua?usp=sharing) | 2,010 | We provide 2,010 pairs of training images.|
-| Local Blur Mask | [link](https://drive.google.com/drive/folders/1-4YerKKlDydgoBeZbiV0_XR9iJLKbLXI?usp=sharing) | 2,405 | We provide a resized version of ReLoBlur dataset. We resized ReLoBlur by BICUBIC algorithm. |
+| Local Blur Mask | [link](https://drive.google.com/drive/folders/1-4YerKKlDydgoBeZbiV0_XR9iJLKbLXI?usp=sharing) | 2,405 | We provide a resized version of ReLoBlur dataset. We resized ReLoBlur by the BICUBIC algorithm. |
 
 The resized version of the ReLoBlur dataset can be processed by BICUBIC algorithm.
 
 Important: ReLoBlur dataset can be only used for academic purposes!
+
+## News
+- **2024.10**: Update the paper link.
+- **2024.4**: Paper [LMD-ViT](https://github.com/LeiaLi/LMD-ViT) releases [a new version of annotated blur masks](https://drive.google.com/drive/folders/1cBhtfm7vzsyAr9D6V_LwWJma845rUSlg?usp=drive_link).
+- **2023.3**: Code, model, and dataset are released.
+- **2022.11**: Paper "Real-world Deep Local Motion Deblurring" is accepted.
 
 ## LBAG: Local Blur-Aware Gated Network
 Based on ReLoBlur, we propose a Local Blur-Aware Gated network (LBAG) and several local blur-aware techniques to bridge the gap between global and local deblurring. LBAG detects blurred regions and restores locally blurred images simultaneously. 
@@ -124,8 +124,8 @@ CUDA_VISIBLE_DEVICES=0 python LBAG_trainer.py --config configs/LBAG.yaml --exp_n
 
 ## Cite
 
-If the dataset and code help your research or work, please cite our paper or star our repo. Thank you!
-
+If the dataset or code helps your research or work, please cite our paper or star this repo. Thank you!
+```
 @inproceedings{li2023real,
   title={Real-world deep local motion deblurring},
   author={Li, Haoying and Zhang, Ziran and Jiang, Tingting and Luo, Peng and Feng, Huajun and Xu, Zhihai},
@@ -135,3 +135,4 @@ If the dataset and code help your research or work, please cite our paper or sta
   pages={1314--1322},
   year={2023}
 }
+```
