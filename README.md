@@ -12,8 +12,7 @@ and children, pets, balls, plants and furniture.
 |     | Google Drive | Baidu Cloud | Number | Description|
 | :--- | :----: |:----: |:---- | ---- |
 | ReLoBlur test | [link](https://drive.google.com/drive/folders/1nYj4e7TSXeqBsUZxLvoay_JLZ7wxdNmC?usp=sharing) | [link](https://pan.baidu.com/s/1dBIs95-KlFTth9cqjX23-Q?pwd=nmcy) (code:nmcy)| 395 | We provide 395 pairs of testing images.|
-| ReLoBlur train| [link](https://drive.google.com/drive/folders/1rAPKzhhRjztj7Utbb00BJLSVaPC-1Jua?usp=sharing) | [link](
-https://pan.baidu.com/s/1CoHScOL46_L06LGXg3K2lg?pwd=49nb) (code:49nb) | 2,010 | We provide 2,010 pairs of training images.|
+| ReLoBlur train| [link](https://drive.google.com/drive/folders/1rAPKzhhRjztj7Utbb00BJLSVaPC-1Jua?usp=sharing) | [link](https://pan.baidu.com/s/1CoHScOL46_L06LGXg3K2lg?pwd=49nb) (code:49nb) | 2,010 | We provide 2,010 pairs of training images.|
 | Local Blur Mask | [link](https://drive.google.com/drive/folders/1-4YerKKlDydgoBeZbiV0_XR9iJLKbLXI?usp=sharing) | [link](https://pan.baidu.com/s/1p6Z_EJhjVvRxWu92VYqe9Q?pwd=98mw) (code:98mw) | 2,405 | We provide a resized version of ReLoBlur dataset. We resized ReLoBlur by the BICUBIC algorithm. |
 
 The resized version of the ReLoBlur dataset can be processed by BICUBIC algorithm.
